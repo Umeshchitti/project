@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: orange;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      margin-bottom: 15px;
+      padding: 8px;
+      border: 1px solid yellow;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: darkblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    /* Additional styles for the homepage */
+    #homeContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #enterButton {
+      padding: 15px;
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #credentialsForm {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: lightgray;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #credentialsSubmitButton {
+      padding: 10px;
+      background-color: darkblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Additional styles for the "Done" section */
+    #doneSection {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #doneButton {
+      padding: 15px;
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #successNotification {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Homepage -->
+  <div id="homeContainer">
+    <h1>Recipe Meal Planner & Grocery List Generator</h1>
+    <button id="enterButton" onclick="showMealPlanner()">Enter</button>
+
+    <!-- Credentials Form -->
+    <div id="credentialsForm" style="display: none;">
+      <h2>Credentials</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" id="credentialsSubmitButton" onclick="submitCredentials()">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Main Content -->
+  <div id="mainContainer" style="display: none;">
+    <header>
+      <h1>Recipe Meal Planner</h1>
+    </header>
+
+    <main>
+      <!-- Meal Planner Form -->
+      <form id="mealPlannerForm">
+        <label for="recipe">Select Recipe:</label>
+        <select id="recipe" name="recipe">
+          <option value="recipe1">roti-pannir</option>
+          <option value="recipe2">chicken pakoda</option>
+          <option value="recipe3">fried chicken</option>
+          <option value="recipe4">veg-biryani</option>
+          <option value="recipe5">chicken-biryani</option>
+          <option value="recipe6">mutton biryani</option>
+          <option value="recipe7">fish</option>
+          <option value="recipe8">prawns</option>
+          <option value="recipe9">veg fried rice</option>
+          <option value="recipe10">noodles</option>
+          <option value="recipe11">chillie chicken</option>
+          <option value="recipe12">egg fried rice</option>
+          <option value="recipe13">idli</option>
+          <option value="recipe14">dosa</option>
+          <option value="recipe15">puri</option>
+        </select>
+
+        <label for="day">Select Day:</label>
+        <input type="date" id="day" name="day" required>
+
+        <button type="button" onclick="addToMealPlan()">Add to Meal Plan</button>
+      </form>
+
+      <!-- Meal Plan List -->
+      <h2>Meal Plan</h2>
+      <ul id="mealPlanList"></ul>
+
+      <!-- Grocery List -->
+      <h2>Grocery List</h2>
+      <ul id="groceryList"></ul>
+
+      <!-- Done Section -->
+      <div id="doneSection" style="display: none;">
+        <button id="doneButton" onclick="showSuccessNotification()">Done</button>
+        <p id="successNotification"></p>
+      </div>
+    </main>
+  </div>
+
+  <!-- JavaScript goes here -->
+  <script>
+    function showMealPlanner() {
+      document.getElementById('homeContainer').style.display = 'none';
+      document.getElementById('mainContainer').style.display = 'block';
+    }
+
+    function addToMealPlan() {
+      var recipeSelect = document.getElementById('recipe');
+      var dayInput = document.getElementById('day');
+      var mealPlanList = document.getElementById('mealPlanList');
+      var groceryList = document.getElementById('groceryList');
+
+      var recipe = recipeSelect.options[recipeSelect.selectedIndex].text;
+      var day = dayInput.value;
+
+      var mealPlanItem = document.createElement('li');
+      mealPlanItem.textContent = `${recipe} - ${day}`;
+      mealPlanList.appendChild(mealPlanItem);
+
+      var groceryListItem = document.createElement('li');
+      groceryListItem.textContent = `Ingredients for ${recipe}`;
+      groceryList.appendChild(groceryListItem);
+
+      // Show the "Done" section
+      document.getElementById('doneSection').style.display = 'block';
+    }
+
+    function showSuccessNotification() {
+      document.getElementById('doneButton').style.display = 'none';
+      document.getElementById('successNotification').textContent = 'Successfully completed!';
+    }
+  </script>
+
+</body>
+</html>
