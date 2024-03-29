@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institute Management System</title> <!-- Title added here -->
+  <style>
+    /* Body styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* Background image properties */
+      background-image: url("https://static.student.com/storm-frontend-wp/uploads/2024/01/Random-trivia-about-universities-hero-image-2.jpg"); /* Replace with your image path */
+      background-repeat: no-repeat;           /* Prevent image tiling */
+      background-position: center;            /* Center image horizontally */
+      background-size: cover;                 /* Stretch image to fill viewport */
+    }
+
+    /* Login container styles */
+    .login-container {
+      background-color: lightgrey;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px; /* Limit container width for better readability */
+    }
+    
+    /* Dashboard container styles */
+    .dashboard-container {
+      display: none; /* Initially hidden */
+      background-color: lightgrey;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      max-width: 500px; /* Limit container width for better readability */
+    }
+
+    /* Other styles (unchanged) */
+  </style>
+</head>
+<body>
+  <div class="login-container" id="login-container">
+    <img src="https://uploads.turbologo.com/uploads/design/preview_image/472636/preview_image20210830-31526-12ldz13.png" alt="Institute Logo">
+    <h1>Institute Management System</h1> <!-- Title added here -->
+    <h2>Login</h2>
+    <form id="login-form" onsubmit="login(event)">
+      <!-- Added registration number field -->
+      <label for="registration-number">Registration Number:</label>
+      <input type="number" id="registration-number" name="registration-number" placeholder="Enter 6-digit number" required minlength="6" maxlength="6">
+      <br><br>
+      <!-- Added password field -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <br><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+  <div class="dashboard-container" id="dashboard-container">
+    <h1>Welcome to the Dashboard</h1>
+    <ul>
+      <li><a href="#">Student Information Management</a>
+        <p>Manage student profiles, including personal information, contact details, and academic records.</p>
+      </li>
+      <br>
+      <li><a href="#">Admissions and Enrollment Management</a>
+        <p>Handle the admission process, manage enrollment, and track application statuses.</p>
+      </li>
+      <br>
+      <li><a href="#">Academic Program Management</a>
+        <p>Administer academic programs, courses, curriculum, and academic calendars.</p>
+      </li>
+      <br>
+      <li><a href="#">Classroom and Schedule Management</a>
+        <p>Manage classroom assignments, schedules, and allocate resources for classes.</p>
+      </li>
+      <br>
+      <li><a href="#">Staff Management</a>
+        <p>Handle staff profiles, roles, assignments, and payroll management.</p>
+      </li>
+      <br>
+      <li><a href="#">Fee Management</a>
+        <p>Manage student fees, payment schedules, and financial transactions.</p>
+      </li>
+      <br>
+      <li><a href="#">Examination and Grading</a>
+        <p>Administer examinations, grade assessments, and track student performance.</p>
+      </li>
+      <br>
+      <li><a href="#">Communication and Collaboration</a>
+        <p>Facilitate communication between students, teachers, and administrators.</p>
+      </li>
+      <br>
+      <li><a href="#">Library Management</a>
+        <p>Manage library resources, cataloging, lending, and tracking of library materials.</p>
+      </li>
+      <br>
+      <li><a href="#">Analytics and Reporting</a>
+        <p>Generate reports, analyze data, and track key performance indicators.</p>
+      </li>
+      <br>
+    </ul>
+    <!-- Go back to login button -->
+    <button onclick="goBackToLogin()">Go Back to Login</button>
+  </div>
+
+  <script>
+    function login(event) {
+      event.preventDefault(); // Prevent form submission
+      // No validation needed, directly show dashboard
+      document.getElementById('login-container').style.display = 'none';
+      document.getElementById('dashboard-container').style.display = 'block';
+    }
+
+    function goBackToLogin() {
+      document.getElementById('login-container').style.display = 'block';
+      document.getElementById('dashboard-container').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
